@@ -1,0 +1,116 @@
+/* Overlay Styles */
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Modal Styles */
+  .Modal {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Header Styles */
+  .Modal h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Date Picker Container Styles */
+  .date-picker-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  .date-picker-container .react-datepicker-wrapper {
+    flex: 1;
+    /* margin: 0 10px; */
+  }
+  
+  .react-datepicker {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .react-datepicker__header {
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .react-datepicker__day--selected,
+  .react-datepicker__day--in-range {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .react-datepicker__day:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  /* Close Button Styles */
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin: 20px auto 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Selected Dates Styles */
+  .selected-dates {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .selected-dates h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .selected-dates p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Keyframes for Modal Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,19 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* list-style: none; */
+  /* overflow-x: hidden; */
+
+}
+html{
+  scroll-behavior: smooth;
+}
+.magicpattern { 
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M610 641.5Q336 783 334 496t274-141.5q276 145.5 2 287Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23A3CFFF%22 d=%22M610 641.5Q336 783 334 496t274-141.5q276 145.5 2 287Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
