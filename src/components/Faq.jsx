@@ -1,12 +1,20 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
+import { faqItems } from "../helper/data";
 
 const FAQContainer = styled.div`
-  max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 1.5em 1.5em 3em;
   background-color: #dcedff;
+  @media (min-width: 768px) {
+    padding: 1.5em 5em;
+    >div{
+      margin: 0 auto;
+      width: 50%;
+    }
+  }
 `;
 
 const FAQItem = styled.div`
@@ -48,43 +56,14 @@ const IconWrapper = styled.div`
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const faqItems = [
-    {
-      question: "Where is Logdix located?",
-      answer: "React is a JavaScript library for building user interfaces.",
-    },
-    {
-      question: "Where is Logdix located?",
-
-      answer:
-        "A component is a reusable piece of code that defines part of a user interface.",
-    },
-    {
-      question: "Where is Logdix located?",
-
-      answer:
-        "State is an object that represents the parts of the app that can change.",
-    },
-    {
-      question: "Where is Logdix located?",
-
-      answer:
-        "Props are inputs to components. They are data passed down from a parent component to a child component.",
-    },
-    {
-      question: "Where is Logdix located?",
-
-      answer:
-        "Hooks are functions that let you use state and other React features in functional components.",
-    },
-  ];
-
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
     <FAQContainer>
+      <div>
+
       <StyledHeader>FAQ</StyledHeader>
       {faqItems.map((item, index) => (
         <FAQItem key={index}>
@@ -97,6 +76,7 @@ const FAQ = () => {
           {openIndex === index && <FAQAnswer>{item.answer}</FAQAnswer>}
         </FAQItem>
       ))}
+    </div>
     </FAQContainer>
   );
 };

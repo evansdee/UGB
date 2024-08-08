@@ -6,11 +6,11 @@ import Image from "../ui/Image";
 
 const StyledFrame = styled.div`
   position: relative;
-  background:${prop=>prop.bg || '#f0f7ff'};
+  background: ${(prop) => prop.bg || "#f0f7ff"};
   padding: 1em 1.5em 4em;
   overflow: hidden;
   z-index: 2;
-  ${prop=>prop.sty || ''};
+  ${(prop) => prop.sty || ""};
 
   ${(prop) => {
     switch (prop.direction) {
@@ -47,24 +47,51 @@ const StyledFrame = styled.div`
         return css``;
     }
   }}
+
+  @media(min-width:768px) {
+    padding: 1em 2.5em;
+  }
 `;
 
 const StyledTitle = styled.h4`
   color: ${(prop) => prop.color || "#28282b"};
   text-align: ${(prop) => prop.txtAlign || "center"};
 
-  margin:.5em 0;
+  margin: 0.5em 0;
   ${(prop) => prop.sty || ""}
-  
 `;
+
 const StyledList = styled.ul`
   color: #28282b;
   /* list-style: inside disc; */
   ${(prop) => prop.sty || ""}
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  flex-wrap: wrap;
+
+  ${(prop) =>
+    prop.flex === "service" &&
+    css`
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: center;
+
+        li {
+          width: 30%;
+        }
+      }
+    `}
+
+    @media(min-width:768px){
+    li{
+        font-size:1.3em;
+    }
+  }
 
   li {
     /* text-indent:10px; */
-    p{
+    p {
       text-align: center;
     }
   }
@@ -73,9 +100,17 @@ const StyledList = styled.ul`
 const StyledDescription = styled.p`
   text-align: ${(prop) => prop.txtAlign || "center"};
   ${(prop) => prop.sty || ""}
+
+  @media(min-width:768px) {
+    font-size: 1.5em;
+  }
 `;
 const StyledDashWrapper = styled.div`
   margin: 1em 0;
+  @media (min-width: 768px) {
+    width: 40%;
+    margin: 0 auto;
+  }
 `;
 
 const Dash = styled.div`
@@ -86,10 +121,12 @@ const Dash = styled.div`
 
 const FrameContext = createContext();
 
-export default function Frame({ children, direction,bg,sty }) {
+export default function Frame({ children, direction, bg, sty }) {
   return (
     <FrameContext.Provider value={{}}>
-      <StyledFrame direction={direction} bg={bg} sty={sty}>{children}</StyledFrame>
+      <StyledFrame direction={direction} bg={bg} sty={sty}>
+        {children}
+      </StyledFrame>
     </FrameContext.Provider>
   );
 }
@@ -123,28 +160,25 @@ function Description({ txtAlign, children, sty }) {
   );
 }
 
-function List({ data, sty,fetch }) {
+function List({ data, sty, fetch, imgHeight, flex }) {
   return (
-    <StyledList sty={sty}>
-      <FlexItem direct="column" gap=".8">
-        {data.map((ele, i) => (
-          <ListItem key={i} ele={ele}fetch={fetch} />
-        ))}
-      </FlexItem>
+    <StyledList sty={sty} flex={flex}>
+      {/* <FlexItem direct="column" gap=".8"> */}
+      {data.map((ele, i) => (
+        <ListItem key={i} ele={ele} fetch={fetch} imgHeight={imgHeight} />
+      ))}
+      {/* </FlexItem> */}
     </StyledList>
   );
 }
 
-function ListItem({ ele,fetch }) {
-  if(fetch) return <li>
-
-
-  </li>
+function ListItem({ ele, fetch, imgHeight }) {
+  if (fetch) return <li></li>;
   if (typeof ele === "string") return <li>{ele}</li>;
 
   return (
-    <li style={{margin:"1em 0"}}> 
-      <Image src={ele.img} height={"200px"} />
+    <li style={{ margin: "1em 0" }}>
+      <Image src={ele.img} height={imgHeight || "200px"} />
       <h4>{ele.label}</h4>
       <p>{ele.desc}</p>
     </li>

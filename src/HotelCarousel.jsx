@@ -68,14 +68,14 @@ const StyledHotelContent = styled.div`
   text-align: center;
   z-index: 2;
 `;
-export default function HotelCarousel({ data, content, noContent }) {
+export default function HotelCarousel({ data, content, noContent,imgHeight }) {
   return (
     <Slider {...settings}>
       {data.map((ele) => {
         return (
           <HotelContainer key={ele.id || ele}>
             <HotelFade />
-            <Image src={ele.img || ele} alt="" />
+            <Image src={ele.img || ele} alt="" height={imgHeight}/>
 
             {content !== "true" && (
               <StyledHotelContent style={{ fontSize: "2em" }}>

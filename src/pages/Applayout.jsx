@@ -10,17 +10,13 @@ import { linkArr } from "../helper/data";
 const StyledApplayout = styled.div`
   position: relative;
   display: grid;
-  /* grid-template-columns:5rem 1fr; */
   grid-template-rows: auto 1fr auto;
-  /* height: 100vh; */
-  /* overflow-x: hidden; */
+ 
 `;
 
 const Main = styled.main`
-  /* overflow-y: scroll; */
   overflow-x: hidden;
   font-family: verdana;
-  /* width: 100dvw; */
 `;
 
 export default function Applayout() {

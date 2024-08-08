@@ -6,11 +6,14 @@ import ListElement from "../ui/ListElement";
 import FAQ from "../components/Faq";
 import { imgs, serviceData } from "../helper/data";
 import HomeRooms from "../features/rooms/HomeRooms";
+import { useView } from "../hooks/useView";
 
 export default function Home() {
+  const {view} = useView()
+
   return (
     <>
-      <HotelCarousel data={imgs} noContent={"true"} content={"true"} />
+      <HotelCarousel data={imgs} noContent={"true"} content={"true"} imgHeight={view >=768 && '100vh'}/>
       <About />
       <CompoundComponent>
         <CompoundComponent.Header>Our Services</CompoundComponent.Header>

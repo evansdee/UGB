@@ -5,20 +5,24 @@ import Frame from "../components/Frame";
 import { aboutList, roomList, valueList, vmList } from "../helper/data";
 import Button from "../ui/Button";
 import styled from "styled-components";
+import { useView } from "../hooks/useView";
 
 const StyledItem = styled.h2`
   color: #007bff;
   font-family: ${(prop) => prop.font || ""};
 `;
 export default function AboutUs() {
+  const {view} = useView()
+
   return (
     <>
-      <Jumbotron img={back} title={"About"} us="true" />
+      <Jumbotron img={back} title={"About"} us="true" imgHeight={view>= 768 && '100dvh'}/>
       <Frame direction={"bottom"}>
         <Frame.Title>
           About <span style={{ color: "#007BFF" }}>UGB</span> Hotel
         </Frame.Title>
         <Frame.DashWrapper />
+        <br />
         {aboutList.map((ele) => (
           <Frame.Description key={ele} txtAlign={"justify"}>
             {ele}

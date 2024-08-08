@@ -7,6 +7,8 @@ import styled, { css } from "styled-components";
 const StyledRoom = styled.div`
   width: ${(prop) => prop.width || "100%"};
   position: relative;
+  z-index: 5;
+
   margin: 0.5em 0;
   ${(prop) =>
     prop.top &&
@@ -26,7 +28,8 @@ const StyledRoom = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  svg {
+  @media(min-width:768px){
+    margin: .5em 1em;
   }
 `;
 

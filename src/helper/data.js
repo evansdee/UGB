@@ -336,8 +336,40 @@ const roomChildList = [
     "2 Semi lift per Tower",
   ],
 ];
+const faqItems = [
+  {
+    question: "Where is Logdix located?",
+    answer: "React is a JavaScript library for building user interfaces.",
+  },
+  {
+    question: "Where is Logdix located?",
+
+    answer:
+      "A component is a reusable piece of code that defines part of a user interface.",
+  },
+  {
+    question: "Where is Logdix located?",
+
+    answer:
+      "State is an object that represents the parts of the app that can change.",
+  },
+  {
+    question: "Where is Logdix located?",
+
+    answer:
+      "Props are inputs to components. They are data passed down from a parent component to a child component.",
+  },
+  {
+    question: "Where is Logdix located?",
+
+    answer:
+      "Hooks are functions that let you use state and other React features in functional components.",
+  },
+];
+
 
 export {
+  faqItems,
   roomList,
   aboutList,
   vmList,

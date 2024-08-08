@@ -10,6 +10,7 @@ import Carousel from "../../components/Carousel";
 import FlexItem from "../../ui/FlexItem";
 import styled from "styled-components";
 import { formatToNaira } from "../../helper/helper";
+import { useView } from "../../hooks/useView";
 
 const StyledBox = styled.p`
   border: 1px solid #28282b81;
@@ -24,31 +25,22 @@ const StyledBox = styled.p`
   }
 `;
 
-export default function RoomItem({ ele, data, index ,name}) {
-  const {
-    avaliable,
-    label,
-    numRoom,
-    numAdult,
-    numberOfPersons,
-    img,
-    description,
-    id,
-    currentPrice,
-    oldPrice,
-  } = ele;
+export default function RoomItem({ ele, data, index, name }) {
+  const { view } = useView();
+  const {avaliable,label,numRoom,numAdult,numberOfPersons,img,description,id,currentPrice,oldPrice,} = ele;
 
   function isEven(number) {
     return number % 2 === 0;
   }
 
-  // console.log(avaliable);
   return (
     <>
       <Frame
         bg="#fff"
         direction={!isEven(index) ? "top" : "bottom"}
-        sty={"margin:0 0 2em;box-shadow:0px 2px 6px 2px rgba(0,0,0,.15)"}
+        sty={`margin:0 0 2em;box-shadow:0px 2px 6px 2px rgba(0,0,0,.15); ${
+          view >= 768 && "width:45%;"
+        }`}
       >
         {avaliable ? (
           <Frame.Title
@@ -87,7 +79,8 @@ export default function RoomItem({ ele, data, index ,name}) {
             <div key={ele.label}>
               <StyledBox>
                 <FlexItem direct="column" align="center" gap=".3">
-                  <ele.icon/><span>{ele.label}</span>
+                  <ele.icon />
+                  <span>{ele.label}</span>
                 </FlexItem>
               </StyledBox>
             </div>

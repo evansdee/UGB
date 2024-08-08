@@ -7,10 +7,20 @@ const StyledFooter = styled.div`
   padding: 1.5em 1.5em 5em;
   background-color: #28282b;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+
+  @media(min-width:768px){
+   display: grid;
+   grid-template-columns: 1fr .5fr .5fr;
+   grid-template-rows: auto;
+  }
 `;
 const StyledDiv = styled.div`
-display: grid;
-row-gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   color: #fff;
 
   p {
@@ -29,9 +39,9 @@ export default function Footer({ children }) {
   return (
     <FooterContext.Provider value={{}}>
       <StyledFooter>
-        <FlexItem direct={"column"} gap="3">
+        {/* <FlexItem direct={"column"} gap="3"> */}
           {children}
-        </FlexItem>
+        {/* </FlexItem> */}
       </StyledFooter>
     </FooterContext.Provider>
   );
@@ -41,9 +51,9 @@ function Description({ title, desc, icons = [], render, color }) {
   return (
     <StyledDiv>
       {/* <FlexItem direct="column" gap="1"> */}
-        <StyledHeader color={color}>{title}</StyledHeader>
-        <p>{desc}</p>
-        <FlexItem>{icons?.map(render)}</FlexItem>
+      <StyledHeader color={color}>{title}</StyledHeader>
+      <p>{desc}</p>
+      <FlexItem>{icons?.map(render)}</FlexItem>
       {/* </FlexItem> */}
     </StyledDiv>
   );
@@ -64,7 +74,7 @@ function Links({ title, data = [], render }) {
 function Contact({ title, phone, email, address }) {
   return (
     <StyledDiv>
-        {/* <FlexItem  */}
+      {/* <FlexItem  */}
       <StyledHeader>{title}</StyledHeader>
       <p>
         {phone[0]} {phone[1]}

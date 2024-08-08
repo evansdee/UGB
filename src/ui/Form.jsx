@@ -7,6 +7,15 @@ const StyledForm = styled.form`
   width: 100%;
   padding: 1.5em;
 
+  @media(min-width:768px){
+    width: 60%;
+    margin: 0 auto;
+
+    input,textarea{
+      padding: 1em .5em;
+    }
+  }
+
   h4 {
     text-align: center;
     color: #007bff;

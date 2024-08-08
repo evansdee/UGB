@@ -1,13 +1,14 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function Map() {
+export default function Map({view}) {
+
   return (
     <>
       <MapContainer
         center={[5.5494, 5.7669]}
         zoom={13}
-        style={{ height: "50vh", width: "100%" }}
+        style={{ height: `${view>= 768 ? '80vh':'50vh'}`, width: "100%" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

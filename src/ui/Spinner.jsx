@@ -25,27 +25,7 @@ const LoaderContainer = styled.div`
   z-index: 9999;
 `;
 
-// const Loader = styled.div`
-//   border: 8px solid #f3f3f3;
-//   border-top: 8px solid #ff6f61; /* hotel theme color */
-//   border-radius: 50%;
-//   width: 80px;
-//   height: 80px;
-//   animation: ${spin} 1s linear infinite;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: relative;
-// `;
 
-// const HotelIcon = styled.div`
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   font-size: 1.5em;
-//   color: #ff6f61; /* hotel theme color */
-// `;
 
 const Spinner = () => {
   return (

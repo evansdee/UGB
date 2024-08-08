@@ -10,9 +10,7 @@ import Login from "./pages/Login";
 import Dasboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
-// import About from "./pages/AboutUs";
 import AboutUs from "./pages/AboutUs";
-
 import Services from "./pages/Services";
 import ContactUs from "./pages/ContactUs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

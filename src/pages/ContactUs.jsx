@@ -6,11 +6,14 @@ import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import FlexItem from "../ui/FlexItem";
 import Map from "../components/Map";
+import { useView } from "../hooks/useView";
 
 export default function ContactUs() {
+  const {view} = useView()
+
   return (
     <>
-      <Jumbotron img={img6} title={"Contact"} us={"Us"} />
+      <Jumbotron img={img6} title={"Contact"} us={"Us"} imgHeight={view>= 768 && '100dvh'}/>
       <Frame>
         <Frame.Title
           label={"If you have any question dont hesitate to contact us."}
@@ -52,7 +55,7 @@ export default function ContactUs() {
           </Frame.Description>
         </FlexItem>
       </Frame>
-      <Map/>
+      <Map view={view}/>
     </>
   );
 }

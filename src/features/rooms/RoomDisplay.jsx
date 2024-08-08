@@ -8,6 +8,7 @@ const StyledRoomDisplay = styled.div`
   position: relative;
   margin: 1em 0 2em;
   height: 50dvh;
+  z-index: 5;
   /* overflow: hidden; */
   /* overflow-y: hidden; */
 
@@ -21,8 +22,11 @@ const StyledRoomDisplay = styled.div`
     background-color: #fff;
     z-index: -1;
   }
-  div {
-  }
+ @media(min-width:768px){
+  width: 30dvw;
+  margin: 1em auto 2em;
+  /* background-color: red; */
+ } 
 `;
 
 const Container = styled.div`

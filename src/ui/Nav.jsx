@@ -7,12 +7,14 @@ import { useContext } from "react";
 import SideBar from "./SideBar";
 import { ToggleContext } from "../hooks/useMenu";
 import { CheckContext } from "../hooks/useSome.jsx";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavUl from "./NavUl.jsx";
+import { useView } from "../hooks/useView.js";
 
 const StyledNav = styled.nav`
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 1001;
   width: 100%;
   padding: 0 0.5em;
   display: flex;
@@ -36,22 +38,26 @@ const StyledNav = styled.nav`
       color: #28282b;
       /* float:right; */
     `}
+
+    @media(min-width:768px){
+     padding: 0 2.5em;
+    }
 `;
 
 export default function Nav() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { isSideToggle, setIsSideToggle } = useContext(ToggleContext);
-
+  
   const { check } = useContext(CheckContext);
+  const {view} = useView()
 
-  console.log(check);
   return (
     <>
       <StyledNav check={check}>
         <FlexItem align={"true"} just={"between"} width={100}>
           {check === "none" ? (
-            <Button onClick={()=>navigate(-1)} extra="font-size:1.5em;">
-              <IoArrowBackCircleOutline/>
+            <Button onClick={() => navigate(-1)} extra="font-size:1.5em;">
+              <IoArrowBackCircleOutline />
             </Button>
           ) : (
             <Button to={"home"} color={check === "all" ? "#fff" : "#28282b"}>
@@ -61,16 +67,25 @@ export default function Nav() {
 
           <FlexItem align="true" gap=".5">
             {/* <Link to={"login"}> */}
-            <Button to={"login"} color={check === "all" ? "#fff" : "#28282b"}>
-              Get in Touch
-            </Button>
-            {/* </Link> */}
-            <Button
-              onClick={() => setIsSideToggle((p) => !p)}
-              color={check === "all" ? "#fff" : "#28282b"}
-            >
-              {isSideToggle ? <RiCloseLine /> : <RiMenu3Fill />}
-            </Button>
+            {view >= 768 ? (
+              <NavUl check={check}/>
+            ) : (
+              <>
+                <Button
+                  to={"login"}
+                  color={check === "all" ? "#fff" : "#28282b"}
+                >
+                  Get in Touch
+                </Button>
+                {/* </Link> */}
+                <Button
+                  onClick={() => setIsSideToggle((p) => !p)}
+                  color={check === "all" ? "#fff" : "#28282b"}
+                >
+                  {isSideToggle ? <RiCloseLine /> : <RiMenu3Fill />}
+                </Button>
+              </>
+            )}
           </FlexItem>
         </FlexItem>
       </StyledNav>

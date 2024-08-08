@@ -2,12 +2,14 @@ import Frame from "../components/Frame";
 import Jumbotron from "../components/Jumbotron";
 import service from "../assets/service.jpg";
 import { serviceList } from "../helper/data";
+import { useView } from "../hooks/useView";
 
 export default function Services() {
-  console.log(serviceList);
+  const {view} = useView()
+
   return (
     <>
-      <Jumbotron img={service} title={"Services"} />
+      <Jumbotron img={service} title={"Services"} imgHeight={view>= 768 && '100dvh'}/>
       <Frame direction={'top'}>
         <Frame.Title label={"Our Services"} />
         <Frame.Description>
@@ -17,6 +19,8 @@ export default function Services() {
         <Frame.List
           data={serviceList}
           sty="list-style:none; h4{color:#007BFF;margin:.5em 0;text-align:center;}"
+          imgHeight={view>= 768 && '50dvh'}
+          flex="service"
         />
       </Frame>
     </>
