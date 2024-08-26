@@ -7,25 +7,21 @@ const Ul = styled.ul`
   list-style: none;
 `;
 
-export default function NavUl({check}) {
+export default function NavUl({ check }) {
   return (
     <Ul check={check}>
-      <FlexItem gap='.5'>
-        {linkArr
-          .filter(
-            (ele) =>
-              ele.title !== "Dashboard" &&
-              ele.title !== "Login" &&
-              ele.title !== "Profile"
-          )
-          .map((ele) => (
-            <li key={ele.url}>
-              <Button to={ele.url}
-                  color={check === "all" ? "#fff" : "#28282b"}
-              
-              >{ele.title}</Button>
-            </li>
-          ))}
+      <FlexItem gap=".5">
+        {linkArr.map((ele) => (
+          <li key={ele.url}>
+            <Button
+              to={ele.url}
+              color={check === "all" ? "#fff" : "#28282b"}
+              nl="true"
+            >
+              {ele.title}
+            </Button>
+          </li>
+        ))}
       </FlexItem>
     </Ul>
   );

@@ -9,6 +9,8 @@ const StyledJumbotron = styled.div`
   /* top: 0; */
   max-width: 100%;
   overflow: hidden;
+  font-family: "Effra";
+
 
   &::after {
     content: "";
@@ -38,7 +40,7 @@ const StyledHeader = styled.div`
       bottom: initial;
     `}
 
-  p {
+  p.para {
     display: flex;
     align-items: center;
     gap: 0.3em;
@@ -63,7 +65,7 @@ export default function Jumbotron({
               <h1>
                 {title} {us && "Us"}
               </h1>
-              <p>
+              <p className="para">
                 <Button to={"/home"} color="#007BFF">
                   Home
                 </Button>

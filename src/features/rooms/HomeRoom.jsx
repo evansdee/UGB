@@ -30,6 +30,7 @@ const StyledRoom = styled.div`
 
   @media(min-width:768px){
     margin: .5em 1em;
+    width:80%;
   }
 `;
 
@@ -39,6 +40,10 @@ const StyledHeader = styled.h4`
   top: 8%;
   left: 3%;
   color: #ffffffa2;
+
+  @media(min-width:768px){
+    color: #fff;
+  }
 `;
 
 const StyledIcon = styled.div`

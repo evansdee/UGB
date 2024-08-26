@@ -4,6 +4,10 @@ import styled from "styled-components";
 const StyledCompound= styled.div`
   padding: 2em 1em;
   background-color: #f0f7ff;
+
+  @media(min-width:768px){
+    padding: 3em 4em;
+  }
 `;
 
 const StyledHeader = styled.h1`
@@ -11,6 +15,7 @@ const StyledHeader = styled.h1`
   display: table;
   font-size: 1.3em;
   padding: 0.5em;
+  font-family: "Rubik";
 `;
 
 const StyledTitle = styled.p`
@@ -21,6 +26,15 @@ const StyledTitle = styled.p`
 
 const StyledList = styled.ul`
 margin-top: 1.5em;
+font-family: "Effra";
+
+@media(min-width:768px){
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  h5,p{
+    font-size: 1.3rem;
+  }
+}
 `
 
 const CompoundContext = createContext();

@@ -13,10 +13,11 @@ import { useView } from "../../hooks/useView";
 const StyledRooms = styled.div`
   padding: 2em 1.5em;
   position: relative;
+  font-family: "Effra";
 
   @media(min-width:768px){
     padding: 2em 2.5em;
-    background:url(${luxDis}) no-repeat center center;
+    /* background:url(${luxDis}) no-repeat center center; */
 
     h3{
       position: relative;
@@ -24,7 +25,7 @@ const StyledRooms = styled.div`
       color: #fff;
     }
 
-    &::after{
+    /* &::after{
       content:'';
       position: absolute;
       top: 0;
@@ -33,7 +34,7 @@ const StyledRooms = styled.div`
       height: 100%;
       background-color: black;
       opacity: .8;
-    }
+    } */
   }
 `;
 

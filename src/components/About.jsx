@@ -6,10 +6,11 @@ import { GoDash } from "react-icons/go";
 const AboutContainer = styled.div`
   padding: 0.5em 1em;
   color: #28282b;
-  font-family: sans-serif;
+  font-family: 'Effra';
   margin: 0.5em 0 2em;
-
+  
   @media (min-width: 768px) {
+    margin: 0.5em 5em;
     padding: 0.5em 2em;
   }
 `;
@@ -31,12 +32,19 @@ const AboutContent = styled.div`
   z-index: 2;
 
   @media (min-width: 768px) {
-    padding: 2em 2.5em;
+    padding: 5em;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
 
+    p{
+      text-align:center!important;
+      
+}
     > p,
     ul li p {
       line-height: 1.5em!important;
-      font-size: 1.5em;
+      font-size: 1.3rem;
     }
   }
 
@@ -82,7 +90,7 @@ function LiElement({ ele }) {
   return (
     <>
       <li>
-        <FlexItem align="true" gap=".5">
+        <FlexItem align="true" gap=".5" view='true'>
           <h5>{`0${ele}`}</h5>
           <p>
             Curabitur vel bibendum lorem. Morbi convallis convallis diam sit

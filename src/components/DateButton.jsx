@@ -45,7 +45,7 @@ export default function DateButton({ all, children }) {
   };
 
   //   console.log(dateRange)
-  return (
+  return ( 
     <>
       <Button onClick={handleClick}>
         {children}

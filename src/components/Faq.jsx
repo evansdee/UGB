@@ -4,15 +4,16 @@ import { FaChevronDown, FaTimes } from "react-icons/fa";
 import { faqItems } from "../helper/data";
 
 const FAQContainer = styled.div`
+  font-family: "Effra";
   width: 100%;
   margin: 0 auto;
   padding: 1.5em 1.5em 3em;
   background-color: #dcedff;
   @media (min-width: 768px) {
     padding: 1.5em 5em;
-    >div{
+    > div {
       margin: 0 auto;
-      width: 50%;
+      /* width: 50%; */
     }
   }
 `;
@@ -63,20 +64,19 @@ const FAQ = () => {
   return (
     <FAQContainer>
       <div>
-
-      <StyledHeader>FAQ</StyledHeader>
-      {faqItems.map((item, index) => (
-        <FAQItem key={index}>
-          <FAQQuestion onClick={() => toggleFAQ(index)}>
-            {item.question}
-            <IconWrapper>
-              {openIndex === index ? <FaTimes /> : <FaChevronDown />}
-            </IconWrapper>
-          </FAQQuestion>
-          {openIndex === index && <FAQAnswer>{item.answer}</FAQAnswer>}
-        </FAQItem>
-      ))}
-    </div>
+        <StyledHeader>FAQ</StyledHeader>
+        {faqItems.map((item, index) => (
+          <FAQItem key={index}>
+            <FAQQuestion onClick={() => toggleFAQ(index)}>
+              {item.question}
+              <IconWrapper>
+                {openIndex === index ? <FaTimes /> : <FaChevronDown />}
+              </IconWrapper>
+            </FAQQuestion>
+            {openIndex === index && <FAQAnswer>{item.answer}</FAQAnswer>}
+          </FAQItem>
+        ))}
+      </div>
     </FAQContainer>
   );
 };

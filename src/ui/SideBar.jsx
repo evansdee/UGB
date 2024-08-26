@@ -9,7 +9,7 @@ import { linkArr } from "../helper/data";
 
 const StyledSide = styled.div`
   background-color: #28282b;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Rubik";
   transition: all 0.8s;
   width: 60vw;
   height: 100vh;
@@ -28,8 +28,8 @@ const StyledSide = styled.div`
 
 
 // export {linkArr}
-export default function SideBar({ left }) {
-  const {setIsSideToggle} = useContext(ToggleContext)
+export default function SideBar() {
+  const {isSideToggle:left,setIsSideToggle} = useContext(ToggleContext)
 
   return (
     <StyledSide left={left}>

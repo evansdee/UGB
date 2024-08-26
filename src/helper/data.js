@@ -28,22 +28,22 @@ import { TbAirConditioning } from "react-icons/tb";
 
 const roomList = [
   {
-    img: lux,
-    label: "Luxurious Rooms",
-    url: "/rooms/luxurious-rooms",
-    font: "fantasy",
-  },
-  {
     img: modern,
     label: "Modern Rooms",
     url: "/rooms/modern-rooms",
-    font: "Times New Roman",
+    font: "'Sansita One'",
+  },
+  {
+    img: lux,
+    label: "Luxurious Rooms",
+    url: "/rooms/luxurious-rooms",
+    font: "'Pacifico'",
   },
   {
     img: firstClass,
     label: "First-Class Rooms",
     url: "/rooms/first-class-rooms",
-    font: "cursive",
+    font: "'Sansita One'",
   },
 ];
 
@@ -366,7 +366,6 @@ const faqItems = [
       "Hooks are functions that let you use state and other React features in functional components.",
   },
 ];
-
 
 export {
   faqItems,

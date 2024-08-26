@@ -9,6 +9,8 @@ const StyledFrame = styled.div`
   background: ${(prop) => prop.bg || "#f0f7ff"};
   padding: 1em 1.5em 4em;
   overflow: hidden;
+  font-family: "Effra";
+
   z-index: 2;
   ${(prop) => prop.sty || ""};
 
@@ -50,6 +52,15 @@ const StyledFrame = styled.div`
 
   @media(min-width:768px) {
     padding: 1em 2.5em;
+    ${(prop) =>
+      prop.view === "true" &&
+      css`
+        margin: 2em 5em;
+      `};
+  }
+
+  h4 {
+    font-size: 1.2em;
   }
 `;
 
@@ -83,9 +94,9 @@ const StyledList = styled.ul`
       }
     `}
 
-    @media(min-width:768px){
-    li{
-        font-size:1.3em;
+  @media(min-width:768px) {
+    li {
+      font-size: 1.3em;
     }
   }
 
@@ -102,7 +113,7 @@ const StyledDescription = styled.p`
   ${(prop) => prop.sty || ""}
 
   @media(min-width:768px) {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 `;
 const StyledDashWrapper = styled.div`
@@ -121,10 +132,10 @@ const Dash = styled.div`
 
 const FrameContext = createContext();
 
-export default function Frame({ children, direction, bg, sty }) {
+export default function Frame({ children, direction, bg, sty,...prop}) {
   return (
     <FrameContext.Provider value={{}}>
-      <StyledFrame direction={direction} bg={bg} sty={sty}>
+      <StyledFrame direction={direction} bg={bg} sty={sty} {...prop}>
         {children}
       </StyledFrame>
     </FrameContext.Provider>

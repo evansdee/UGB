@@ -23,7 +23,8 @@ const StyledRoomDisplay = styled.div`
     z-index: -1;
   }
  @media(min-width:768px){
-  width: 30dvw;
+  width: 50dvw;
+  height: 60dvh;
   margin: 1em auto 2em;
   /* background-color: red; */
  } 
@@ -75,7 +76,7 @@ export default function RoomDisplay({ title, image,amount,clr }) {
   return (
     <StyledRoomDisplay clr={clr}>
       <Container>
-        <Image src={image} height={"43dvh"} />
+        <Image src={image} height={"43dvh"} view="true"/>
         <Div style={{textTransform:'capitalize'}}>{title} room</Div>
         <Div under="true">
           <FlexItem direct="column" gap=".5">

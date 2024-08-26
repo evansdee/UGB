@@ -10,14 +10,29 @@ import { useView } from "../hooks/useView";
 const StyledItem = styled.h2`
   color: #007bff;
   font-family: ${(prop) => prop.font || ""};
+  text-transform: uppercase;
+  /* padding: .5em; */
 `;
+
+const Wierd = styled.div`
+display: flex;
+flex-wrap: nowrap;
+overflow-x: scroll;
+white-space: nowrap;
+scrollbar-width: none;
+
+@media(min-width:768px){
+    margin: 0em 5em;
+    justify-content: space-around;
+  }
+`
 export default function AboutUs() {
   const {view} = useView()
 
   return (
     <>
       <Jumbotron img={back} title={"About"} us="true" imgHeight={view>= 768 && '100dvh'}/>
-      <Frame direction={"bottom"}>
+      <Frame direction={"bottom"} view='true'>
         <Frame.Title>
           About <span style={{ color: "#007BFF" }}>UGB</span> Hotel
         </Frame.Title>
@@ -29,16 +44,24 @@ export default function AboutUs() {
           </Frame.Description>
         ))}
       </Frame>
-      <Carousel>
+      {/* <Carousel> */}
+      <Wierd>
+
         {roomList.map((ele) => {
+          const [x,y] = ele.label.split(' ')
           return (
             <Button key={ele.label}>
-              <StyledItem font={ele.font}>{ele.label}</StyledItem>
+              <StyledItem font={ele.font}>
+                {x}
+                <br />
+                {y}
+                </StyledItem>
             </Button>
           );
         })}
-      </Carousel>
-      <Frame direction={"top"}>
+        </Wierd>
+      {/* </Carousel> */}
+      <Frame direction={"top"} view='true'>
         <Frame.Title txtAlign={"left"} sty={"margin:2em 0 .5em;"}>
           Our Vision & Mission
         </Frame.Title>

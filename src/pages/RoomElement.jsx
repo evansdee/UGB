@@ -8,17 +8,18 @@ import StyledHeader from "../ui/Header";
 import { roomList, utilList } from "../helper/data";
 import HomeRoom from "../features/rooms/HomeRoom";
 import styled from "styled-components";
+import FlexItem from "../ui/FlexItem";
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   
   @media (min-width: 768px) {
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 3em;
+    /* flex-wrap: wrap;
+    flex-direction: row; */
+    /* gap: 3em; */
     /* align-items: center; */
-    justify-content: center;
+    /* justify-content: center; */
   }
 `;
 
@@ -53,9 +54,12 @@ export default function RoomElement({ name }) {
         ))}
       </StyledContainer>
 
+        {/* <FlexItem> */}
+
       {roomFilter.map((ele) => (
         <HomeRoom key={ele.label} ele={ele} />
-        ))}
+      ))}
+      {/* </FlexItem> */}
     </>
   );
 }

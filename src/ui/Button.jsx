@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const btnStyle = css`
@@ -29,6 +29,14 @@ const StyledButton = styled.button`
 const StyledLink = styled(Link)`
   ${btnStyle}/* text-decoration: none; */
 `;
+const StyledNavLink = styled(NavLink)`
+  ${btnStyle}/* text-decoration: none; */
+
+  &.active {
+    color: red!important;
+    font-weight: bold;
+  }
+`;
 
 const StyledAnchor = styled.a`
   ${btnStyle};
@@ -36,7 +44,7 @@ const StyledAnchor = styled.a`
 
 `;
 
-export default function Button({ children, to, href, ...props }) {
+export default function Button({ children, to, href,nl, ...props }) {
   // export default function Button({ children, to, onClick, bg, font, color,m }) {
   if (to)
     return (
@@ -46,6 +54,13 @@ export default function Button({ children, to, href, ...props }) {
       </StyledLink>
     );
 
+    if(nl) 
+      return (
+        <StyledNavLink to={to} {...props}>
+          {/* <StyledLink to={to} bg={bg} font={font} color={color} m={m} onClick={onClick}> */}
+          {children}
+        </StyledNavLink>
+      );
   if (href) return <StyledAnchor href={href} {...props}>{children}</StyledAnchor>;
 
   return (

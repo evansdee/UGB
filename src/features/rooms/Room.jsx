@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import styled from "styled-components";
 import { formatToNaira } from "../../helper/helper";
 import Spinner from "../../ui/Spinner";
@@ -11,6 +12,7 @@ import HotelCarousel from "../../HotelCarousel";
 import RoomDisplay from "./RoomDisplay";
 import Button from "../../ui/Button";
 import Book from "./Book";
+import { useView } from "../../hooks/useView";
 
 const StyledRoom = styled.div`
   /* background-color: #28282b; */
@@ -19,10 +21,12 @@ const StyledRoom = styled.div`
 const Header = styled.div`
   text-align: center;
   width: 100%;
+  font-family: "Sansita One";
 `;
 
 export default function Room({ name }) {
   const { data = {}, isLoading } = useRoom(name);
+  const { view } = useView();
 
   const { img, label, description, currentPrice, oldPrice } = data;
 
@@ -32,7 +36,7 @@ export default function Room({ name }) {
   const arr2 = roomChildList.filter((ele) => typeof ele === "object").at(0);
   return (
     <StyledRoom>
-      <Jumbotron img={img[0]} imgHeight={"60vh"} sty={"true"}>
+      <Jumbotron img={img[0]} imgHeight={view >= 768 && "100dvh"} sty={"true"}>
         <Header>
           <FlexItem direct="column" gap="1">
             <h2>MODERN ROOM</h2>
@@ -72,13 +76,26 @@ export default function Room({ name }) {
           amount={currentPrice}
           clr="true"
         />
-        <FlexItem direct='column' gap='1' align='center'>
-
-        <Button color='#002C5C' bg='#fff' href='#book' extra="width:fit-content;border-radius:20px;">Book for Inspection</Button>
-        <Button color='#fff' bg='#007BFF' to={'booking'} extra="width:fit-content;border-radius:20px">Pay for room</Button>
+        <FlexItem direct="column" gap="1" align="center">
+          <Button
+            color="#002C5C"
+            bg="#fff"
+            href="#book"
+            extra="width:fit-content;border-radius:20px;"
+          >
+            Book for Inspection
+          </Button>
+          <Button
+            color="#fff"
+            bg="#007BFF"
+            to={"booking"}
+            extra="width:fit-content;border-radius:20px"
+          >
+            Pay for room
+          </Button>
         </FlexItem>
       </Frame>
-        <Book/>
+      <Book />
     </StyledRoom>
   );
 }

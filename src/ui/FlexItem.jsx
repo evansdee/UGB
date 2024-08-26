@@ -22,12 +22,16 @@ const FlexItem = styled.div`
     css`
       align-items: center;
     `};
-    width: ${prop=>prop.width && `${prop.width}%`}
+  width: ${(prop) => prop.width && `${prop.width}%`};
+
+  @media (min-width: 768px) {
+    flex-direction: ${(prop) => (prop.view === "true" && "column" )};
+  }
 `;
 
 FlexItem.defaultProps = {
-    direct:'row',
-    just:'flex-start',
-}
+  direct: "row",
+  just: "flex-start",
+};
 
 export default FlexItem;

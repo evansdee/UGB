@@ -13,5 +13,5 @@ export function useView(){
       return () => window.removeEventListener("resize", handleEvent, false);
     }, [view]);
 
-    return {view,setView}
+    return {view,setView,isView:view>=768}
 }

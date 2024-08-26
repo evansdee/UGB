@@ -33,7 +33,7 @@ const settings = {
     <div
       style={{
         color: "#fff",
-        width:"3rem",
+        width: "3rem",
       }}
     >
       <RxDotFilled />
@@ -67,15 +67,31 @@ const StyledHotelContent = styled.div`
   color: #fff;
   text-align: center;
   z-index: 2;
+
+  h1 {
+    font-family: "Sansita One";
+  }
+  p:first-of-type{
+    font-size:4rem;
+  }
+  p {
+    font-family: "Rubik";
+    /* @media (min-width: 768px) { */
+  }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 6em;
+    }
+  }
 `;
-export default function HotelCarousel({ data, content, noContent,imgHeight }) {
+export default function HotelCarousel({ data, content, noContent, imgHeight }) {
   return (
     <Slider {...settings}>
       {data.map((ele) => {
         return (
           <HotelContainer key={ele.id || ele}>
             <HotelFade />
-            <Image src={ele.img || ele} alt="" height={imgHeight}/>
+            <Image src={ele.img || ele} alt="" height={imgHeight} />
 
             {content !== "true" && (
               <StyledHotelContent style={{ fontSize: "2em" }}>

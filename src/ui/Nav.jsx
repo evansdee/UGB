@@ -21,6 +21,8 @@ const StyledNav = styled.nav`
   background-color: #fff;
   font-family: sans-serif;
   color: #28282b;
+  font-family: "Rubik";
+
 
   ${(prop) =>
     prop.check === "all" &&
@@ -40,7 +42,11 @@ const StyledNav = styled.nav`
     `}
 
     @media(min-width:768px){
-     padding: 0 2.5em;
+     padding: .5em 2.5em;
+
+     a{
+      font-size:1.1rem;
+     }
     }
 `;
 
@@ -89,9 +95,8 @@ export default function Nav() {
           </FlexItem>
         </FlexItem>
       </StyledNav>
-      {/* {isSideToggle && <SideBar left={`true`} />} */}
-      {/* <SideBar left={`${isSideToggle}`} /> */}
-      <SideBar left={isSideToggle} />
+
+      {view < 768 && <SideBar />}
     </>
   );
 }

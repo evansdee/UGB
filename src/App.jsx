@@ -1,9 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Applayout from "./pages/Applayout";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
@@ -21,7 +16,8 @@ import Room from "./features/rooms/Room";
 import { names } from "./helper/data";
 import { usePathLocation } from "./hooks/usePathLocation";
 import Booking from "./features/rooms/Booking";
-
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,9 +29,8 @@ const queryClient = new QueryClient({
 });
 
 function Nil() {
+  const { location } = usePathLocation();
 
-  const {location} = usePathLocation()
- 
   return (
     <Routes>
       <Route path="test" element={<Test />} />
@@ -61,7 +56,7 @@ function Nil() {
                 path={`${ele.path}/:id`}
                 element={<Room name={ele.name} />}
               />
-                <Route path={`${ele.path}/:id/booking`} element={<Booking/>}/>
+              <Route path={`${ele.path}/:id/booking`} element={<Booking />} />
               {/* </Route> */}
             </>
           ))}
@@ -79,6 +74,17 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        pauseOnFocusLoss={false}
+        theme="dark"
+        transition:Flip
+        rtl={false}
+      toastStyle={{padding:'0'}}
+      />
       <BrowserRouter>
         <Nil />
       </BrowserRouter>

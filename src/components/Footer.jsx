@@ -6,15 +6,20 @@ import FlexItem from "../ui/FlexItem";
 const StyledFooter = styled.div`
   padding: 1.5em 1.5em 5em;
   background-color: #28282b;
-  font-family: sans-serif;
+  font-family: "Effra";
   display: flex;
   flex-direction: column;
   gap: 3em;
-
+  
   @media(min-width:768px){
+    padding: 7em;
+    background: #000;
    display: grid;
-   grid-template-columns: 1fr .5fr .5fr;
-   grid-template-rows: auto;
+   grid-template-columns: repeat(3,1fr);
+   /* grid-template-columns: .5fr .5fr .5fr; */
+   /* grid-template-rows: auto; */
+   justify-content: center; /* Centers the grid itself horizontally */
+  align-items: stretch; 
   }
 `;
 const StyledDiv = styled.div`
@@ -24,8 +29,18 @@ const StyledDiv = styled.div`
   color: #fff;
 
   p {
-    line-height: 0.9em;
+    /* line-height: 0.9em; */
     font-size: 0.9em;
+  }
+
+  @media(min-width:768px){
+    hr{
+      display: none;
+    }
+
+    a{
+      padding: 0;
+    }
   }
 `;
 
@@ -52,7 +67,7 @@ function Description({ title, desc, icons = [], render, color }) {
     <StyledDiv>
       {/* <FlexItem direct="column" gap="1"> */}
       <StyledHeader color={color}>{title}</StyledHeader>
-      <p>{desc}</p>
+      <p className="desc">{desc}</p>
       <FlexItem>{icons?.map(render)}</FlexItem>
       {/* </FlexItem> */}
     </StyledDiv>
@@ -64,8 +79,11 @@ function Links({ title, data = [], render }) {
     <StyledDiv>
       <StyledHeader>{title}</StyledHeader>
       <FlexItem direct="column" gap=".5">
-        {data?.map(render)}
-        {/* <hr /> */}
+        {data?.filter(
+            (ele) =>
+              ele.title !== "Dashboard" &&
+              ele.title !== "Login"
+          ).map(render)}
       </FlexItem>
     </StyledDiv>
   );
