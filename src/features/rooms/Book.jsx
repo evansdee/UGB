@@ -18,6 +18,10 @@ const Container = styled.div`
   background-color: #f1f5f9;
   margin: 1rem 0;
   padding: 1rem;
+
+  @media(min-width:768px){
+    background-color: transparent;
+  }
 `;
 
 const FormWrapper = styled.div`

@@ -8,7 +8,6 @@ import StyledHeader from "../ui/Header";
 import { roomList, utilList } from "../helper/data";
 import HomeRoom from "../features/rooms/HomeRoom";
 import styled from "styled-components";
-import FlexItem from "../ui/FlexItem";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -30,9 +29,9 @@ export default function RoomElement({ name }) {
 
 
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <p>lover</p>;
   if (error) return <Error msg={error.message} />;
-  if (!data) return <p>no data</p>;
+  // if (!data) return <p>no data</p>;
 
   const roomFilter = roomList.filter(
     (ele) => !ele.label.toLowerCase().includes(name)
@@ -42,7 +41,9 @@ export default function RoomElement({ name }) {
     <>
       <StyledHeader>{title} hostels</StyledHeader>
 
-      <StyledContainer>
+
+
+     {isLoading ? <Spinner/>: <StyledContainer>
         {data?.map((ele, index) => (
           <RoomItem
             key={ele.id}
@@ -52,7 +53,7 @@ export default function RoomElement({ name }) {
             name={name}
           />
         ))}
-      </StyledContainer>
+      </StyledContainer>}
 
         {/* <FlexItem> */}
 

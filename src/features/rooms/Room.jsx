@@ -24,9 +24,27 @@ const Header = styled.div`
   font-family: "Sansita One";
 `;
 
+const All = styled.div`
+  @media (min-width: 768px) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  /* height: 100dvh; */
+
+  
+  }
+
+  .left,
+  .right {
+    @media (min-width: 768px) {
+    width: 45%;
+    }
+  }
+`;
+
 export default function Room({ name }) {
   const { data = {}, isLoading } = useRoom(name);
-  const { view } = useView();
+  const { isView } = useView();
 
   const { img, label, description, currentPrice, oldPrice } = data;
 
@@ -36,7 +54,7 @@ export default function Room({ name }) {
   const arr2 = roomChildList.filter((ele) => typeof ele === "object").at(0);
   return (
     <StyledRoom>
-      <Jumbotron img={img[0]} imgHeight={view >= 768 && "100dvh"} sty={"true"}>
+      <Jumbotron img={img[0]} imgHeight={isView && "100dvh"} sty={"true"}>
         <Header>
           <FlexItem direct="column" gap="1">
             <h2>MODERN ROOM</h2>
@@ -45,31 +63,58 @@ export default function Room({ name }) {
           </FlexItem>
         </Header>
       </Jumbotron>
+
       <Frame bg={"#28282b"}>
-        <Frame.Title label={"Description"} txtAlign={"center"} color={"#fff"} />
-        <Frame.Description txtAlign={"justify"} sty={"color:#fff"}>
-          {description}
-        </Frame.Description>
-        <Frame.List data={arr1} sty={"color:#fff;padding:.5em 2em;"} />
-        <Frame.List
-          data={arr2}
-          sty={"margin:2rem 0;color:#fff;padding:0 2em; "}
-        />
-        <FlexItem just="between">
-          <Frame.Description sty={"color:#fff;"}>First Year</Frame.Description>
-          <Frame.Description sty={"color:#FFA500;"}>
-            {formatToNaira(currentPrice)}
-          </Frame.Description>
-        </FlexItem>
-        <FlexItem just="between">
-          <Frame.Description sty={"color:#fff;"}>
-            Subsequent Year
-          </Frame.Description>
-          <Frame.Description sty={"color:#FFA500;"}>
-            {formatToNaira(oldPrice)}
-          </Frame.Description>
-        </FlexItem>
-        <HotelCarousel data={img} content="true" />
+        <All>
+          <div className="right">
+            <HotelCarousel data={img} content="true" />
+
+            <Frame.Title
+              label={"Description"}
+              txtAlign={"center"}
+              color={"#fff"}
+            />
+            <Frame.Description txtAlign={"justify"} sty={"color:#fff;"}>
+              {description}
+              <br />
+              <br />
+              Acquire your very own unit in our self-contain apartment,
+              featuring stunning ocean views, located on Alexander Road in the
+              heart of Calabar.
+              <br />
+              <br />
+              Explore the lavish details and exceptional living opportunities
+              that await you at Self-Con by The Address Homes.
+            </Frame.Description>
+            <Frame.List data={arr1} sty={"color:#fff;padding:.5em 2em;"} />
+            <Frame.List
+              data={arr2}
+              sty={"margin:2rem 0;color:#fff;padding:0 2em; "}
+            />
+            <FlexItem just="between">
+              <Frame.Description sty={"color:#fff;"}>
+                First Year
+              </Frame.Description>
+              <Frame.Description sty={"color:#FFA500;"}>
+                {formatToNaira(currentPrice)}
+              </Frame.Description>
+            </FlexItem>
+            <FlexItem just="between">
+              <Frame.Description sty={"color:#fff;"}>
+                Subsequent Year
+              </Frame.Description>
+              <Frame.Description sty={"color:#FFA500;"}>
+                {formatToNaira(oldPrice)}
+              </Frame.Description>
+            </FlexItem>
+          </div>
+
+          <div className="left">
+            <Book />
+          </div>
+        </All>
+      </Frame>
+      <Frame>
         <RoomDisplay
           image={img[1]}
           title={name}
@@ -95,7 +140,6 @@ export default function Room({ name }) {
           </Button>
         </FlexItem>
       </Frame>
-      <Book />
     </StyledRoom>
   );
 }
