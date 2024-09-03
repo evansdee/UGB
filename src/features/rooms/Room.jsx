@@ -13,6 +13,8 @@ import RoomDisplay from "./RoomDisplay";
 import Button from "../../ui/Button";
 import Book from "./Book";
 import { useView } from "../../hooks/useView";
+import Skeleton from "react-loading-skeleton";
+import { useStateContext } from "../../state/StateContext";
 
 const StyledRoom = styled.div`
   /* background-color: #28282b; */
@@ -26,18 +28,16 @@ const Header = styled.div`
 
 const All = styled.div`
   @media (min-width: 768px) {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  /* height: 100dvh; */
-
-  
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    /* height: 100dvh; */
   }
 
   .left,
   .right {
     @media (min-width: 768px) {
-    width: 45%;
+      width: 45%;
     }
   }
 `;
@@ -46,9 +46,20 @@ export default function Room({ name }) {
   const { data = {}, isLoading } = useRoom(name);
   const { isView } = useView();
 
+  const { dispatch } = useStateContext();
+
+  // console.log(typeof state.amount);
+
   const { img, label, description, currentPrice, oldPrice } = data;
 
   if (isLoading) return <Spinner />;
+
+  function handleUpdate() {
+    dispatch({
+      type: "updateRoom",
+      payload: { img, amount: currentPrice,label },
+    });
+  }
 
   const arr1 = roomChildList.filter((ele) => typeof ele === "string");
   const arr2 = roomChildList.filter((ele) => typeof ele === "object").at(0);
@@ -58,7 +69,7 @@ export default function Room({ name }) {
         <Header>
           <FlexItem direct="column" gap="1">
             <h2>MODERN ROOM</h2>
-            <h3>{label}</h3>
+            <h3>{label || <Skeleton count={2} />}</h3>
             <p>Your Home away from home</p>
           </FlexItem>
         </Header>
@@ -133,8 +144,9 @@ export default function Room({ name }) {
           <Button
             color="#fff"
             bg="#007BFF"
-            to={"booking"}
+            to={"/booking"}
             extra="width:fit-content;border-radius:20px"
+            onClick={handleUpdate}
           >
             Pay for room
           </Button>

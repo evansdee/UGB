@@ -11,7 +11,8 @@ const inputStyle = css`
 `;
 
 const StyledInput = styled.input`
-  ${inputStyle}
+  ${inputStyle};
+  ${(prop) => prop.sty}
 `;
 
 const TextArea = styled.textarea`
@@ -20,11 +21,13 @@ const TextArea = styled.textarea`
 
 export default function InputField({
   type = "text",
+  change,
   value,
   placeholder,
   textArea,
   cols,
-  rows
+  rows,
+  sty,
 }) {
   if (textArea)
     return (
@@ -37,7 +40,13 @@ export default function InputField({
     );
   return (
     <>
-      <StyledInput type={type} value={value} placeholder={placeholder} />
+      <StyledInput
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        sty={sty}
+        onChange={change}
+      />
     </>
   );
 }

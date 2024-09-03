@@ -15,9 +15,19 @@ import RoomElement from "./pages/RoomElement";
 import Room from "./features/rooms/Room";
 import { names } from "./helper/data";
 import { usePathLocation } from "./hooks/usePathLocation";
-import Booking from "./features/rooms/Booking";
-import { Bounce, ToastContainer } from "react-toastify";
+import Booking from "./pages/Booking";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SkeletonTheme } from "react-loading-skeleton";
+import StateContextProvider from "./state/StateContext";
+import GlobalStyles from "./styles/GlobalStyles";
+import Summary from "./pages/Summary";
+import { useEffect } from "react";
+import Payment from "./pages/Payment";
+import SignUpWidget from "./pages/SignUp";
+import SignUp from "./pages/SignUp";
+import UserDetailsProvider from "./hooks/UserDetails";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,8 +38,12 @@ const queryClient = new QueryClient({
   },
 });
 
-function Nil() {
+function AppPage() {
   const { location } = usePathLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <Routes>
@@ -41,7 +55,18 @@ function Nil() {
         <Route path="about" element={<AboutUs />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="services" element={<Services />} />
-        <Route path="rooms" element={<Rooms />}>
+        <Route path="booking" element={<Booking />} />
+        <Route path="summary" element={<Summary />} />
+        <Route path="payment" element={<Payment />} />
+
+        <Route
+          path="rooms"
+          element={
+            <ProtectedRoute>
+              <Rooms />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Navigate replace to="modern-rooms" />} />
 
           {names.map((ele) => (
@@ -56,15 +81,17 @@ function Nil() {
                 path={`${ele.path}/:id`}
                 element={<Room name={ele.name} />}
               />
-              <Route path={`${ele.path}/:id/booking`} element={<Booking />} />
+              {/* <Route path={`${ele.path}/:id/booking`} element={<Booking />} /> */}
               {/* </Route> */}
             </>
           ))}
         </Route>
+
         <Route path="dashboard" element={<Dasboard />} />
       </Route>
 
       <Route path="login" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
@@ -77,17 +104,25 @@ export default function App() {
       <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop={true}
         pauseOnFocusLoss={false}
         theme="dark"
         transition:Flip
         rtl={false}
-      toastStyle={{padding:'0'}}
+        toastStyle={{ padding: "0" }}
       />
-      <BrowserRouter>
-        <Nil />
-      </BrowserRouter>
+
+      <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <StateContextProvider>
+          <GlobalStyles />
+          <UserDetailsProvider>
+            <BrowserRouter>
+              <AppPage />
+            </BrowserRouter>
+          </UserDetailsProvider>
+        </StateContextProvider>
+      </SkeletonTheme>
     </QueryClientProvider>
   );
 }

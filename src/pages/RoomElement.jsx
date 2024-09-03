@@ -8,11 +8,13 @@ import StyledHeader from "../ui/Header";
 import { roomList, utilList } from "../helper/data";
 import HomeRoom from "../features/rooms/HomeRoom";
 import styled from "styled-components";
+import Skeleton from "react-loading-skeleton";
+import CardSkeleton from "../features/rooms/CardSkeleton";
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   @media (min-width: 768px) {
     /* flex-wrap: wrap;
     flex-direction: row; */
@@ -27,9 +29,7 @@ export default function RoomElement({ name }) {
 
   const title = name.split("-").join(" ");
 
-
-
-  if (isLoading) return <p>lover</p>;
+  // if (isLoading) return <p>lover</p>;
   if (error) return <Error msg={error.message} />;
   // if (!data) return <p>no data</p>;
 
@@ -40,10 +40,8 @@ export default function RoomElement({ name }) {
   return (
     <>
       <StyledHeader>{title} hostels</StyledHeader>
-
-
-
-     {isLoading ? <Spinner/>: <StyledContainer>
+      <StyledContainer>
+        {isLoading && <CardSkeleton cards={5} />}
         {data?.map((ele, index) => (
           <RoomItem
             key={ele.id}
@@ -53,10 +51,8 @@ export default function RoomElement({ name }) {
             name={name}
           />
         ))}
-      </StyledContainer>}
-
-        {/* <FlexItem> */}
-
+      </StyledContainer>{" "}
+      |{/* <FlexItem> */}
       {roomFilter.map((ele) => (
         <HomeRoom key={ele.label} ele={ele} />
       ))}

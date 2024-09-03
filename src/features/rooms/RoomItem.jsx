@@ -11,6 +11,7 @@ import FlexItem from "../../ui/FlexItem";
 import styled from "styled-components";
 import { formatToNaira } from "../../helper/helper";
 import { useView } from "../../hooks/useView";
+import Skeleton from "react-loading-skeleton";
 
 const StyledBox = styled.p`
   border: 1px solid #28282b81;
@@ -27,14 +28,17 @@ const StyledBox = styled.p`
 
 const All = styled.div`
   margin: 3em 6em;
-  box-shadow: 1px 1px 5px #28282b;
+  box-shadow: 1px 1px 5px #b6b6ca;
   padding: 1em;
   background-color: #fff;
+  position: relative;
+  z-index: 2;
 
   @media(max-width:768px){
     margin: 0;
   box-shadow: none;
   padding: 0em;
+  background-color: transparent;
   }
 `;
 
@@ -64,7 +68,7 @@ const Container = styled.div`
 `;
 
 export default function RoomItem({ ele, data, index, name }) {
-  const { view,isView } = useView();
+  const {isView } = useView();
   const {
     avaliable,
     label,
@@ -95,7 +99,7 @@ export default function RoomItem({ ele, data, index, name }) {
               txtAlign={"left"}
               sty="font-size:.7em;border:1px solid #28282b53; display:table;padding:.5em;"
             >
-              Room {numRoom} | Adult {numAdult}
+              Room {numRoom|| <Skeleton/>} | Adult {numAdult}
             </Frame.Title>
           ) : (
             <>

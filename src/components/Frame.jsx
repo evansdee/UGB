@@ -11,8 +11,8 @@ const StyledFrame = styled.div`
   overflow: hidden;
   font-family: "Effra";
 
-  z-index: 2;
-  ${(prop) => prop.sty || ""};
+  /* z-index: 647747; */
+  ${(prop) => prop.sty || ""}
 
   ${(prop) => {
     switch (prop.direction) {
@@ -23,7 +23,7 @@ const StyledFrame = styled.div`
             position: absolute;
             border-radius: 50%;
             background: #dcedff;
-            z-index: -1;
+            z-index: 1;
             width: 408.56px;
             height: 437px;
             top: -171px;
@@ -35,7 +35,7 @@ const StyledFrame = styled.div`
           &::after {
             content: "";
             border-radius: 50%;
-            z-index: -1;
+            z-index: 1;
 
             position: absolute;
             background: #dcedff;
@@ -48,7 +48,7 @@ const StyledFrame = styled.div`
       default:
         return css``;
     }
-  }}
+  }};
 
   @media(min-width:768px) {
     padding: 1em 2.5em;
@@ -67,7 +67,8 @@ const StyledFrame = styled.div`
 const StyledTitle = styled.h4`
   color: ${(prop) => prop.color || "#28282b"};
   text-align: ${(prop) => prop.txtAlign || "center"};
-
+  position: relative;
+  z-index: 2;
   margin: 0.5em 0;
   ${(prop) => prop.sty || ""}
 `;
@@ -80,6 +81,8 @@ const StyledList = styled.ul`
   flex-direction: column;
   gap: 1em;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 
   ${(prop) =>
     prop.flex === "service" &&
@@ -111,7 +114,8 @@ const StyledList = styled.ul`
 const StyledDescription = styled.p`
   text-align: ${(prop) => prop.txtAlign || "center"};
   ${(prop) => prop.sty || ""}
-
+  position: relative;
+  z-index: 2;
   @media(min-width:768px) {
     font-size: 1em;
   }

@@ -43,6 +43,7 @@ const settings = {
 
 const HotelContainer = styled.div`
   position: relative;
+  z-index: 3;
   /* overflow: hidden; */
 `;
 
@@ -58,6 +59,11 @@ const HotelFade = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
   }
 `;
+
+const Try = styled.div`
+position: relative;
+z-index: 3;
+`
 
 const StyledHotelContent = styled.div`
   position: absolute;
@@ -86,6 +92,8 @@ const StyledHotelContent = styled.div`
 `;
 export default function HotelCarousel({ data, content, noContent, imgHeight }) {
   return (
+    <Try>
+
     <Slider {...settings}>
       {data.map((ele) => {
         return (
@@ -104,6 +112,8 @@ export default function HotelCarousel({ data, content, noContent, imgHeight }) {
         );
       })}
     </Slider>
+    </Try>
+
   );
 }
 

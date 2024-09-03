@@ -43,7 +43,7 @@ const StyledRooms = styled.div`
 export default function HomeRooms() {
 
   const {view} = useView()
-  console.log(view)
+  // console.log(view)
   return (
     <StyledRooms>
       <h3>Our Rooms</h3>

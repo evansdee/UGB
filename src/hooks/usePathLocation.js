@@ -13,8 +13,15 @@ export function usePathLocation() {
       "/rooms/modern-rooms/",
       "/rooms/luxurious-rooms/",
     ];
+
+    const otherPaths = [
+      '/booking',
+      "/summary",
+      "/payment"
+    ]
     // You can adjust the path check here to handle more complex logic if needed
-    if (location.pathname.endsWith("booking")) {
+    if (otherPaths.some((path) => location.pathname.startsWith(path))) {
+    // if (location.pathname.endsWith("booking")) {
       setCheck("none");
     } else if (checkPaths.some((path) => location.pathname.startsWith(path))) {
       // if (location.pathname.startsWith("/rooms/modern-rooms/" || "/rooms/luxurious-rooms/")) {

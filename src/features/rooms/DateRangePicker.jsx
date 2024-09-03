@@ -41,8 +41,7 @@ const DisplayText = styled.div`
   font-weight: bold;
 `;
 
-export default function DateRangePicker() {
-  const [dateRange, setDateRange] = useState([null, null]);
+export default function DateRangePicker({dateRange, setDateRange}) {
   const [startDate, endDate] = dateRange;
 
   const ExampleCustomInput = forwardRef(({ onClick, className }, ref) => (

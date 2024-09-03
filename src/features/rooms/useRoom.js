@@ -7,13 +7,13 @@ export function useRoom(room) {
 
   const { id } = useParams();
   const { isLoading, data, error } = useQuery({
-    queryKey: ["room", id],
+    queryKey: [`${room}`, id],
     queryFn: () => getRoom({ room, id }),
   });
-  queryClient.prefetchQuery({
-    queryKey: ["room", id],
-    queryFn: () => getRoom({ room, id }),
-  });
+  // queryClient.prefetchQuery({
+  //   queryKey: ["room", id],
+  //   queryFn: () => getRoom({ room, id }),
+  // });
 
   return { isLoading, error, data };
 }

@@ -5,6 +5,8 @@ import Button from "./Button";
 import { useContext } from "react";
 import { ToggleContext } from "../hooks/useMenu";
 import { linkArr } from "../helper/data";
+import { useLocalUser } from "../hooks/UserDetails";
+import { toast } from "react-toastify";
 // import { useMenu } from "../hooks/useMenu";
 
 const StyledSide = styled.div`
@@ -25,16 +27,27 @@ const StyledSide = styled.div`
     `};
 `;
 
-
-
 // export {linkArr}
 export default function SideBar() {
-  const {isSideToggle:left,setIsSideToggle} = useContext(ToggleContext)
+  const { isSideToggle: left, setIsSideToggle } = useContext(ToggleContext);
+  const {
+    value: { isAuthenticated },
+    setValue,
+  } = useLocalUser();
 
+  function handleLogout() {
+    setValue(p=>({...p,isAuthenticated:false}));
+    setIsSideToggle(false)
+    toast.success('Logged out successfully')
+  }
+
+  console.log(isAuthenticated);
   return (
     <StyledSide left={left}>
       <FlexItem direct="column">
         {linkArr.map((ele) => {
+          const x = ele.title === "Login";
+
           return (
             <Button
               key={ele.title}
@@ -46,6 +59,11 @@ export default function SideBar() {
             </Button>
           );
         })}
+        {isAuthenticated && (
+          <Button onClick={handleLogout} color={"#fff"} to={"/home"}>
+            Logout
+          </Button>
+        )}
       </FlexItem>
     </StyledSide>
   );
